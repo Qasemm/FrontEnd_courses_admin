@@ -69,6 +69,7 @@ function save() {
   cancle_btn.style.display = "none";
   updata_ngo()
 }
+
 function cancle() {
   let inputs = document.getElementsByClassName("input");
   for (let i = 0; i < inputs.length; i++) {
@@ -97,6 +98,7 @@ function onload() {
     email.value = dataNGO.email
     url.value = dataNGO.website
     new_name.value=dataNGO.name
+console.log(dataNGO.logo)
     if(dataNGO.logo==undefined){
 
     }else{
@@ -168,6 +170,7 @@ function updata_ngo() {
   }).then(res => res.json()).then(data => {
     console.log(data)
   })
+  
 }
 
 

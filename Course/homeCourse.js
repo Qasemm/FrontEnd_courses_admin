@@ -16,7 +16,7 @@ upatedPage();
 console.log(data);
   const htmlArray = data.map(( courses,index) =>
      '<div data-id='+courses.id+' class="list"><h3>'+courses.title+'<img id="remove" class="remove" src="img/error.png" onclick="deleteCourse"></h3>' +
-    '<p>'+courses.description+ '</p> <a href="" ><h4 style="margin-left: 17px;color: blue;">'+courses.name+'</h4></a><button class="MoreInfo" onclick="showOneCourse(trg)" >  More Information </button></div>'
+    '<p>'+courses.description+ '</p><p>Trainer: <h4 style="margin-left: 70px;color: black;margin-top: -34px;">'+courses.name+'</h4>  </p> <button class="MoreInfo" onclick="showOneCourse(trg)" >  More Information </button></div>'
    );
    document.getElementById("AllCourses").innerHTML += htmlArray.join('');
    let re=document.getElementsByClassName("remove")
