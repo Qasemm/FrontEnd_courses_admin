@@ -3,7 +3,7 @@ let cancle_btn=document.getElementById('cancle');
 // save_btn.addEventListener('click',goBack);
 cancle_btn.addEventListener('click',goBack);
  function goBack() {
-window.location = "../Course/index.html"; //specify the url to redirect
+window.location = "index.html"; //specify the url to redirect
 }
 let input=document.getElementsByTagName("input");         
 let Name_course_P=document.getElementById("Name_course_P");
@@ -147,7 +147,9 @@ let trainerName = document.getElementById("addtriner").value;
 console.log(trainerName);
 
 //window.location = "index.html";
-
+ if (CourseName.value === "" ){
+    alert("add some information")
+  }else{
 let header=new Headers();
 header.append("content-type", "application/json");
 let id = localStorage.getItem('id');
@@ -176,5 +178,6 @@ body:JSON.stringify({
         
         
     });
+  window.location = "index.html"; }
    
 }

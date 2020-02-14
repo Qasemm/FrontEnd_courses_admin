@@ -8,13 +8,13 @@ let Contact_number_P=document.getElementById("Contact_number_P");
 let Contact_number=document.getElementById("num");
 let Address=document.getElementById("address");
 let Adress_P=document.getElementById("Adress_P");
-// let cancle_btn=document.getElementById('cancle');
+ let cancle_btn=document.getElementById('cancle');
 // let save_btn=document.getElementById('save');
 // save_btn.addEventListener('click',goBack);
-// cancle_btn.addEventListener('click',goBack);
-//  function goBack() {
-// window.location = "trainers.html"; //specify the url to redirect
-// }
+ cancle_btn.addEventListener('click',goBack);
+  function goBack() {
+ window.location = "trainers.html"; 
+ }
 const checkName = /^[a-z]|[0-9]/i;
 function checkNameRegExp() {
 if (name.value == "") {
@@ -154,5 +154,5 @@ if (name === "" ){
         console.log(data);
         })
 
-
+window.location="trainers.html";
 }}

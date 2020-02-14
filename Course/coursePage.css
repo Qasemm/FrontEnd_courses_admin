@@ -118,10 +118,13 @@ body{
   .para{
     width: 70%;
     float: right;
-   /* margin-top: -42px;*/
-    margin-top: -36px;
+   /* margin-top: -36px;*/
+   margin-top: -50px;
+
    /* margin-right: 290px;*/
-   margin-right: 50px;
+   /*margin-right: 50px;*/
+   margin-right: 23px;
+
   }
   .btn{
     margin-left: 65px;
@@ -132,5 +135,6 @@ body{
   }
   .aLink{
     text-decoration: underline;
-  
+    margin-top: -42px;
+
   }
