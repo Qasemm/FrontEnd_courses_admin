@@ -135,6 +135,17 @@ body{
   }
   .aLink{
     text-decoration: underline;
-    margin-top: -42px;
+    margin-top: -35px;
+    font-size: 20px;
+    color: blue;
+    border: #ffffff solid 1px;
+    border-width: 3px;
+    background-color: #ffffff;
 
+  }
+  .addtriner{
+    margin-top: -35px;
+    margin-left: 347px;
+    width: 60.5%;
+    height: 28px;
   }

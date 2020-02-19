@@ -154,5 +154,5 @@ if (name === "" ){
         console.log(data);
         })
 
-window.location="trainers.html";
+// window.location="trainers.html";
 }}

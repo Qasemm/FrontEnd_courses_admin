@@ -175,9 +175,9 @@ body:JSON.stringify({
     })
     .then(data=>{
         console.log(data);
-        
+        window.location = "index.html";
         
     });
-  window.location = "index.html"; }
+  // window.location = "index.html"; }
    
-}
+}}

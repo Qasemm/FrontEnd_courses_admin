@@ -84,9 +84,11 @@ function cancle() {
 
 
 function onload() {
+  let id = localStorage.getItem('id');
+  console.log(id)
   let header = new Headers()
   header.append("authorization", "Bearer:" + localStorage.getItem("token"))
-  fetch("http://localhost:3000/ngo/", {
+  fetch("http://localhost:3000/ngo/"+id, {
     method: "GET",
     headers: header
   }).then(res => res.json()).then(data => {

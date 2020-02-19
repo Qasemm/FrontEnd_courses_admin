@@ -27,8 +27,8 @@ function renderOneCourses(data) {
 
     const htmlArray = data.map(( courses,index) =>
     ' <div> <h3 >title :</h3> <input id="title" type="text" class="para input" value="'+courses.title+
-    '"></input></div> <div>  <h3 >Trainer Of Course:</h3>  <a id="'+courses.trainer+'" class="para aLink"  onclick="openProfile(this.id)">'+courses.name+
-    '</a> </div>  <div> <h3>descrption : </h3> <input  id="description"type="text" class="para input" value="'+courses.description+
+    '"></div> <div>  <h3 >Trainer Of Course:</h3>  <a id="'+courses.trainer+'" class="para aLink"  onclick="openProfile(this.id)">'+courses.name+
+    '</a></div><div><select class="addtriner" id="addtriner"> <option id ="optionTraine"  value="change trainee"> change trainee </option></select></div> <div> <h3>descrption : </h3> <input  id="description"type="text" class="para input" value="'+courses.description+
     '"></input></div>  <div><h3>dates :</h3> <input id="dates1" type="text" class="para input" value="'+ courses.start_date+'"></input> </div> <div><h3>dates :</h3>   <input id="dates2" type="text" class="para input" value="'+ courses.end_datel+
     '"></input></div> <div> <h3> location :</h3><input id="location" type="text"class="para input" value="'+courses.location+
     '"> </input> </div><div> <h3>number of seats:    </h3> <input id="number" type="text" class="para input" value="'+courses.number_of_seats+
@@ -36,7 +36,31 @@ function renderOneCourses(data) {
     );
     // console.log(htmlArray);
     document.getElementById("container").innerHTML = htmlArray;
+    let id_ngo = localStorage.getItem('id');
+    fetch('http://localhost:3000/trainer/ngos/'+id_ngo, {
+        method: 'GET',
+      })
+        .then(Response =>
+          Response.json())
+        .then(data => {
+          console.log(data)
+          const htmlArray = data.map( (trainer , index) =>'<option id ="optionTraine"  value="'+trainer.id+'"> '+ trainer.name+ '</option>');
+            document.getElementById("addtriner").innerHTML += htmlArray;
+            option=document.getElementsByTagName('option'); })  
+            let trainerName = document.getElementById("addtriner").value;
+            console.log(trainerName);
+            let add =document.getElementById("addtriner");
+  
+            add.addEventListener('change', op)
+            function op(e){
+                let mm = e.target.value;
+                console.log(mm);
+            // return mm;
+            }
+
   }
+ 
+  // console.log(op(e))
   ////////////////////////////////////////////////////////////////
  function getInfOneCourse(){
     let id=getParameterByName("id", url);
@@ -58,28 +82,32 @@ function renderOneCourses(data) {
   ///////////////////////////////////////////////////////////////
   // document.getElementById("traineeLink").addEventListener('click',getListTrainee);
   function getListTrainee(){
-    window.location = "../Trainee/getAllTrainee.html";
-    let id=getParameterByName("id", url);
-    console.log(id);
-    fetch('http://localhost:3000/courses/trainee/'+id,
-    {
-    method:'GET',
+  //   window.location = "../Trainee/getAllTrainee.html";
+  //   let id=getParameterByName("id", url);
+  //   console.log(id);
+  //   fetch('http://localhost:3000/courses/trainee/'+id,
+  //   {
+  //   method:'GET',
     
-    }) 
-    .then(Response => Response.json())
-    .then( data =>{ 
-      console.log(data);
+  //   }) 
+  //   .then(Response => Response.json())
+  //   .then( data =>{ 
+  //     console.log(data);
      
-      function renderTrainees(data) {
-        const htmlArray = data.map(
-          trainer => '<div class="list"><div  class="im"><img onclick="" id = ' + trainer.id + ' src="" alt=""></div><div  class="im contnt desc"><h3 >' + trainer.name + ' <img class="remove" id = ' + trainer.id + '  src="img/error.png"></h3><p>' + trainer.email + '</p><p >' + trainer.mobile + '</p><p>' + trainer.address + '</p></div></div></a></div>'
-        );
+  //     function renderTrainees(data) {
+  //       const htmlArray = data.map(
+  //         trainer => '<div class="list"><div  class="im"><img onclick="" id = ' + trainer.id + ' src="" alt=""></div><div  class="im contnt desc"><h3 >' + trainer.name + ' <img class="remove" id = ' + trainer.id + '  src="img/error.png"></h3><p>' + trainer.email + '</p><p >' + trainer.mobile + '</p><p>' + trainer.address + '</p></div></div></a></div>'
+  //       );
 
-        document.getElementById("div1").innerHTML += htmlArray.join('');
+  //       document.getElementById("div1").innerHTML += htmlArray.join('');
              
-        };
-        renderTrainees(data);
-    })
+  //       };
+  //       renderTrainees(data);
+  //   })
+  let id=getParameterByName("id", url);
+  console.log(id);
+  window.location = "../Trainee/getAllTrainee.html?id="+id;
+  //C:\Users\PC\Desktop\final_project2\FrontEnd_courses_admin\Trainee\getAllTrainee.html
     
   }
   //////////////////////////////////////////////////////////////
@@ -104,8 +132,9 @@ let DateEnd=document.getElementById("dates2");
 let CourseLocation=document.getElementById("location");
 let NumberOfSeats=document.getElementById("number"); 
 const desc=document.getElementById('description');
-// let trainerName = document.getElementById("addtriner").value;
-// console.log(trainerName);
+// let trainerName = mm;
+let trainerName = document.getElementById("addtriner").value;
+console.log(trainerName);
 console.log(DateEnd.value);
 
 // window.location = "index.html";
@@ -123,18 +152,20 @@ body:JSON.stringify({
     desctiption:desc.value,
     date_begin:DateBegin.value,
     date_end:DateEnd.value,
-    number_of_seats:NumberOfSeats.value
+    number_of_seats:NumberOfSeats.value,
+    trainerName:trainerName
 })
     }   
     ).then(res=>{
-        res.json()
+      return res.json()
     })
     .then(data=>{
         console.log(data);
-        
+      
+        window.location = "../Course/index.html"; 
         
     });
-
+    // getInfOneCourse()
   }
   let cancle_btn=document.getElementById('cancle');
   // cancle_btn.addEventListener('click',goBack);
